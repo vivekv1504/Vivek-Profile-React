@@ -1,0 +1,381 @@
+/* Enhanced Styles - Additional Features */
+
+/* Scroll Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00bcd4, #00ff88);
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #00bcd4, #0198a6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+  box-shadow: 0 6px 25px rgba(0, 188, 212, 0.6);
+  transform: translateY(-3px);
+}
+
+.dark-mode .back-to-top {
+  background: linear-gradient(135deg, #00bcd4, #008fa0);
+}
+
+/* Social Links in Hero */
+.social-links-hero {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.social-links-hero a {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 188, 212, 0.1);
+  border: 2px solid #00bcd4;
+  color: #00bcd4;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.social-links-hero a:hover {
+  background: #00bcd4;
+  color: white;
+  transform: translateY(-5px) rotate(360deg);
+  box-shadow: 0 5px 20px rgba(0, 188, 212, 0.4);
+}
+
+/* Project Tags */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.project-tag {
+  padding: 0.4rem 0.8rem;
+  background: rgba(0, 188, 212, 0.1);
+  border: 1px solid #00bcd4;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  color: #00bcd4;
+  transition: all 0.3s ease;
+}
+
+.project-tag:hover {
+  background: #00bcd4;
+  color: white;
+  transform: scale(1.05);
+}
+
+.dark-mode .project-tag {
+  background: rgba(0, 188, 212, 0.15);
+  border-color: #00bcd4;
+}
+
+.project-meta {
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+/* Enhanced Card Shadows */
+.project-card,
+.cert-list li,
+.education-timeline {
+  position: relative;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 188, 212, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.project-card:hover::before {
+  left: 100%;
+}
+
+/* Gradient Text Effect */
+.heading span {
+  background: linear-gradient(135deg, #00bcd4, #00ff88);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced Skill Tags with Glow */
+.skill-list li {
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-list li::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+.skill-list li:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Animated Underline for Links */
+.project-link,
+.cert-link {
+  position: relative;
+  display: inline-block;
+}
+
+.project-link::after,
+.cert-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #00bcd4;
+  transition: width 0.3s ease;
+}
+
+.project-link:hover::after,
+.cert-link:hover::after {
+  width: 100%;
+}
+
+/* Pulsing Animation for Contact Button */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 188, 212, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 15px rgba(0, 188, 212, 0);
+  }
+}
+
+.contact-btn {
+  animation: pulse 2s infinite;
+}
+
+/* Enhanced Image Effects */
+.imgbox {
+  position: relative;
+}
+
+.imgbox::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(45deg, #00bcd4, #00ff88, #00bcd4);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: rotate 3s linear infinite;
+}
+
+.imgbox:hover::before {
+  opacity: 0.7;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Certification Cards Enhancement */
+.cert-list li {
+  background: linear-gradient(145deg, rgba(0, 188, 212, 0.05), transparent);
+  border-left: 4px solid #00bcd4;
+}
+
+.cert-list li:hover {
+  border-left-width: 8px;
+  background: linear-gradient(145deg, rgba(0, 188, 212, 0.1), transparent);
+}
+
+/* Education Table Hover Effect */
+/* Education card animations are handled in App.css */
+
+/* Button Ripple Effect */
+.btn1, .btn2 {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn1::after, .btn2::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn1:hover::after, .btn2:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Typing Animation Enhancement */
+.cursor {
+  display: inline-block;
+  width: 2px;
+  background-color: #00bcd4;
+  margin-left: 5px;
+}
+
+/* Section Divider */
+section {
+  position: relative;
+}
+
+section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00bcd4, transparent);
+  opacity: 0.5;
+}
+
+/* Loading Animation for Forms */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+button[disabled] {
+  position: relative;
+}
+
+button[disabled]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+/* Enhanced Form Focus Effects */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 188, 212, 0.3);
+}
+
+/* Smooth Entrance Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-card,
+.cert-list li,
+.skill-list li {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Parallax Effect for Sections */
+.home,
+.projects,
+.skills,
+.certifications {
+  background-attachment: fixed;
+}
+
+/* Enhanced Mobile Menu */
+@media (max-width: 768px) {
+  .navbar.active {
+    backdrop-filter: blur(10px);
+    background-color: rgba(34, 34, 34, 0.95);
+  }
+  
+  .social-links-hero {
+    justify-content: center;
+  }
+  
+  .back-to-top {
+    width: 45px;
+    height: 45px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .header,
+  .back-to-top,
+  .scroll-progress,
+  .social-links-hero {
+    display: none;
+  }
+}
+
