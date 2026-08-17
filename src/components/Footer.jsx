@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const Footer = () => {
   return (
     <footer>
-      <motion.div 
+      <motion.div
         className="footer-content"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -12,20 +12,20 @@ const Footer = () => {
         transition={{ duration: 0.6 }}
       >
         <p>
-          &copy; 2025 Vintha Vivekananda. Made with <FaHeart className="heart-icon" /> using React
+          &copy; 2026 Vintha Vivekananda. Made with <FaHeart className="heart-icon" /> using React
         </p>
         <div className="social-icons">
-          <a 
-            href="https://www.linkedin.com/in/vintha-vivekananda-a2478526a/" 
-            target="_blank" 
+          <a
+            href="https://www.linkedin.com/in/vintha-vivekananda-a2478526a/"
+            target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
           >
             <FaLinkedin />
           </a>
-          <a 
-            href="https://github.com/vivekv1504" 
-            target="_blank" 
+          <a
+            href="https://github.com/vivekv1504"
+            target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
           >

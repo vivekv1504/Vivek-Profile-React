@@ -10,7 +10,7 @@ const Hero = () => {
 
   useEffect(() => {
     let timeout;
-    
+
     if (!isDeleting && displayText === fullText) {
       timeout = setTimeout(() => setIsDeleting(true), 2000);
     } else if (isDeleting && displayText === '') {
@@ -30,7 +30,7 @@ const Hero = () => {
 
   return (
     <section className="home" id="home">
-      <motion.div 
+      <motion.div
         className="home-content"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -39,49 +39,45 @@ const Hero = () => {
         <h3>Hello!</h3>
         <h1>
           I'm <span className="typing-text">{displayText}</span>
-          <span className="cursor">|</span>, a Fresher
+          <span className="cursor">|</span>, a Software Engineer
         </h1>
+      
         <p>
-          I am Vintha Vivekananda from Andhra Pradesh. I recently joined as a Software Engineer at cisco systems as a part of Apprenticeship program.
-        </p>
-        <p>
-          I have basic knowledge in technical skills like Python, Pandas, Numpy, Matplotlib, 
-          HTML, CSS, JavaScript,Reactjs,Angular, SQL/MySQL, MS Excel, Power BI.
-        </p>
+        Software Engineer at Cisco webex with experience building developer tools, SDK documentation, end-to-end test automation, and AI-assisted development workflows. I work with React, JavaScript, Playwright, GitHub Actions, and networking technologies. I enjoy converting requirements into reliable features, clear technical specifications, and maintainable solutions. My interests include Generative AI, AI agents, Model Context Protocol (MCP), networking, and spec-driven development.        </p>
         <div className="btn-box">
-          <a 
-            href="mailto:vinthavivek19@gmail.com?subject=Hiring%20Inquiry" 
+          <a
+            href="mailto:vinthavivek19@gmail.com?subject=Hiring%20Inquiry"
             className="btn1"
           >
             Hire Me
           </a>
-          <a 
-            href="/resumes/VINTHAVIVEKANANDA-UPDATE-RESUME.pdf" 
-            className="btn2" 
+          <a
+            href="public/resumes/Vintha_vivekananda_exp (9).pdf"
+            className="btn2"
             download
           >
             Download CV
           </a>
         </div>
-        
+
         <div className="social-links-hero">
-          <a 
-            href="https://www.linkedin.com/in/vintha-vivekananda-a2478526a/" 
-            target="_blank" 
+          <a
+            href="https://www.linkedin.com/in/vintha-vivekananda-a2478526a/"
+            target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
           >
             <FaLinkedin />
           </a>
-          <a 
-            href="https://github.com/vivekv1504" 
-            target="_blank" 
+          <a
+            href="https://github.com/vivekv1504"
+            target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
           >
             <FaGithub />
           </a>
-          <a 
+          <a
             href="mailto:vinthavivek19@gmail.com"
             aria-label="Email"
           >
@@ -90,7 +86,7 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      <motion.div 
+      <motion.div
         className="imgbox"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}

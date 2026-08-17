@@ -23,27 +23,27 @@ const Contact = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Email is invalid';
     }
-    
+
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
     } else if (!/^\d{10}$/.test(formData.phone.replace(/\D/g, ''))) {
       newErrors.phone = 'Phone number must be 10 digits';
     }
-    
+
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -65,13 +65,13 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
 
     setIsSubmitting(true);
-    
+
     try {
       const response = await fetch('https://formsubmit.co/vinthavivek19@gmail.com', {
         method: 'POST',
@@ -107,7 +107,7 @@ const Contact = () => {
 
   return (
     <section className="contact-form" id="contact" ref={ref}>
-      <motion.h2 
+      <motion.h2
         className="heading"
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -116,7 +116,7 @@ const Contact = () => {
         Contact <span>Me</span>
       </motion.h2>
 
-      <motion.form 
+      <motion.form
         onSubmit={handleSubmit}
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -183,22 +183,24 @@ const Contact = () => {
           {errors.message && <span className="error-message">{errors.message}</span>}
         </div>
 
-        <button 
-          type="submit" 
-          className="btn1" 
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? (
-            'Sending...'
-          ) : (
-            <>
-              Send Message <FaPaperPlane />
-            </>
-          )}
-        </button>
+        <div className="form-submit">
+          <button
+            type="submit"
+            className="btn1"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              'Sending...'
+            ) : (
+              <>
+                Send Message <FaPaperPlane />
+              </>
+            )}
+          </button>
+        </div>
 
         {submitStatus === 'success' && (
-          <motion.div 
+          <motion.div
             className="submit-message success"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -208,7 +210,7 @@ const Contact = () => {
         )}
 
         {submitStatus === 'error' && (
-          <motion.div 
+          <motion.div
             className="submit-message error"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}

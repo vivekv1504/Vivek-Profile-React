@@ -1,9 +1,21 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaCertificate, FaExternalLinkAlt, FaFilePdf, FaAward } from 'react-icons/fa';
+import {
+  FaCertificate,
+  FaExternalLinkAlt,
+  FaFilePdf,
+  FaBrain,
+  FaGithub,
+  FaNetworkWired,
+  FaPython,
+  FaDatabase,
+  FaRegCalendarAlt
+} from 'react-icons/fa';
 import { HiOutlineBadgeCheck } from 'react-icons/hi';
-import completionCertPdf from '../assets/images/completion-certificate.pdf';
 import planning from '../assets/images/planning-and-designing.pdf';
+import aitechPdf from '../assets/images/Cisco Certified AI Technical Practitioner certificate.pdf';
+import copilotPdf from '../assets/images/Credentials - vinthavivekananda-2384 _ Microsoft Learn.pdf';
+import ciscoNetworkPdf from '../assets/images/Cisco Certified Network Associate certificate.pdf';
 
 const Certifications = () => {
   const [ref, inView] = useInView({
@@ -13,34 +25,56 @@ const Certifications = () => {
 
   const certifications = [
     {
-      title: 'Python Basics',
-      provider: 'HackerRank',
-      link: 'https://www.hackerrank.com/certificates/e7b9357e8f18',
-      type: 'external',
-      icon: <FaCertificate />,
+      title: 'Cisco AI Technical Practitioner (AITECH)',
+      provider: 'Cisco',
+      link: aitechPdf,
+      type: 'pdf',
+      date: '',
+      icon: <FaBrain />,
+      color: '#667eea'
+    },
+    {
+      title: 'GitHub Copilot (GH-300)',
+      provider: 'Microsoft',
+      link: copilotPdf,
+      type: 'pdf',
+      date: '',
+      icon: <FaGithub />,
+      color: '#4facfe'
+    },
+    {
+      title: 'Cisco Certified Network Associate',
+      provider: 'Cisco',
+      link: ciscoNetworkPdf,
+      type: 'pdf',
+      date: '',
+      icon: <FaNetworkWired />,
       color: '#00bcd4'
     },
     {
-      title: 'SQL Basics',
+      title: 'Python (Basic)',
       provider: 'HackerRank',
-      link: 'https://www.hackerrank.com/certificates/7cd8e4c225f5',
+      link: 'https://www.hackerrank.com/certificates/e7b9357e8f18',
       type: 'external',
-      icon: <FaAward />,
+      date: '',
+      icon: <FaPython />,
       color: '#00ff88'
     },
     {
-      title: 'CCNA Completion Certificate',
-      provider: 'Cisco Systems', 
-      link: completionCertPdf,
-      type: 'pdf',
-      icon: <HiOutlineBadgeCheck />,
-      color: '#667eea'
+      title: 'SQL (Basic)',
+      provider: 'HackerRank',
+      link: 'https://www.hackerrank.com/certificates/7cd8e4c225f5',
+      type: 'external',
+      date: '',
+      icon: <FaDatabase />,
+      color: '#30cfd0'
     },
     {
       title: 'Planning and Designing UI',
       provider: 'Simplilearn',
       link: planning,
       type: 'pdf',
+      date: '',
       icon: <FaCertificate />,
       color: '#f093fb'
     },
@@ -97,6 +131,12 @@ const Certifications = () => {
                   <HiOutlineBadgeCheck /> {cert.provider}
                 </span>
               </p>
+
+              {cert.date && (
+                <p className="cert-date">
+                  <FaRegCalendarAlt /> {cert.date}
+                </p>
+              )}
               
               <div className="cert-card-divider"></div>
               

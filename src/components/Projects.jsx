@@ -10,6 +10,19 @@ const Projects = () => {
 
   const projects = [
     {
+      title: 'Notes & Reminder App',
+      location: 'Personal Project',
+      duration: '2026',
+      tags: ['React', 'Vite', 'Firebase', 'Flask', 'Azure OpenAI', 'LiteLLM', 'GitHub Actions'],
+      points: [
+        'Built and deployed a full-stack reminder application using React, Firebase Authentication, Firestore, and a Flask backend.',
+        'Integrated Azure OpenAI through LiteLLM to generate weekly AI-powered productivity insights with fallback handling.',
+        'Created CI/CD workflows using GitHub Actions and deployed the frontend and backend independently.',
+      ],
+      link: 'https://note-reamainder-app.web.app/',
+      linkText: 'View Live Demo',
+    },
+    {
       title: 'Malicious URLs Detection Using Data Analytics',
       location: 'Final Year Project, Tirupati',
       duration: 'Jan 2024 - May 2024',
@@ -34,15 +47,16 @@ const Projects = () => {
       ],
     },
     {
-      title: 'webex App',
-      location: 'cisco systems pvt ltd',
-      duration: 'Aug 2025 - Present',
-      tags: ['HTML', 'CSS', 'JavaScript', 'React'],
+      title: 'Webex JS SDK & Widgets Version Comparison Tool',
+      location: 'Cisco Systems, Inc.',
+      duration: 'August 2025 - August 2026',
+      tags: ['JavaScript', 'HTML', 'CSS', 'Handlebars.js', 'Fetch API', 'Bootstrap'],
       points: [
-        'comparing the stable versions of webex App that enables developers to compare package versions across SDK releases',
-        'Built an interactive version comparison tool for Webex JS SDK changelog that enables developers to compare package versions across SDK releases',
-        'Implemented dual-mode interface (single-view/comparison), package-level granular comparison with pre-release version support, shareable permalink generation, and real-time statistics tracking (changed/added/removed packages)',
-        'Used Handlebars templating, async/await for parallel data fetching, and URL state management for bookmarkable comparisons.'
+        'Built a version-comparison tool for the Webex JS SDK changelog, contributing three merged pull requests and approximately 1,900 lines of code.',
+        'Compared packages across SDK releases and classified them as Added, Removed, Version Changed, or Unchanged.',
+        'Created reusable data-layer functions for package comparison, pre-release resolution, and change statistics.',
+        'Added shareable URLs, clipboard support, commit-history links, and improved semantic-version sorting.',
+        'Developed a GitHub Actions CI/CD workflow that automatically comments on pull requests and sends status notifications through a Webex bot using Webex APIs.'
       ],
     },
     {
@@ -62,7 +76,7 @@ const Projects = () => {
 
   return (
     <section className="projects" id="projects" ref={ref}>
-      <motion.h2 
+      <motion.h2
         className="heading"
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -73,7 +87,7 @@ const Projects = () => {
 
       <div className="projects-grid">
         {projects.map((project, index) => (
-          <motion.div 
+          <motion.div
             key={index}
             className="project-card"
             initial={{ opacity: 0, y: 30 }}
@@ -87,7 +101,7 @@ const Projects = () => {
               <br />
               {project.duration}
             </p>
-            
+
             {project.tags && (
               <div className="project-tags">
                 {project.tags.map((tag, i) => (
@@ -95,20 +109,20 @@ const Projects = () => {
                 ))}
               </div>
             )}
-            
+
             <ul>
               {project.points.map((point, i) => (
                 <li key={i}>{point}</li>
               ))}
             </ul>
             {project.link && (
-              <a 
-                href={project.link} 
-                target="_blank" 
+              <a
+                href={project.link}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="project-link"
               >
-                View Analysis <FaExternalLinkAlt />
+                {project.linkText || 'View Analysis'} <FaExternalLinkAlt />
               </a>
             )}
           </motion.div>

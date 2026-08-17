@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { FaGraduationCap, FaStar } from 'react-icons/fa';
 
 const Education = () => {
   const [ref, inView] = useInView({
@@ -50,7 +51,7 @@ const Education = () => {
           >
             <div className="education-card-header">
               <div className="education-icon">
-                <i className='bx bxs-graduation'></i>
+                <FaGraduationCap />
               </div>
               <div className="education-year">{edu.year}</div>
             </div>
@@ -59,7 +60,7 @@ const Education = () => {
               <h3 className="education-degree">{edu.degree}</h3>
               <p className="education-institution">{edu.institution}</p>
               <div className="education-grade">
-                <i className='bx bxs-star'></i>
+                <FaStar />
                 <span>{edu.grade}</span>
               </div>
             </div>

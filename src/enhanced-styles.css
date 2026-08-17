@@ -367,6 +367,37 @@ button[disabled]::before {
     bottom: 20px;
     right: 20px;
   }
+
+  /* Fixed backgrounds are janky on mobile browsers */
+  .home,
+  .projects,
+  .skills,
+  .certifications {
+    background-attachment: scroll;
+  }
+
+  /* Touch devices can't hover, so keep the glowing ring always on */
+  .imgbox::before {
+    opacity: 0.55;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    filter: blur(2px);
+  }
+
+  .imgbox img {
+    animation: floatPhoto 4s ease-in-out infinite;
+  }
+}
+
+@keyframes floatPhoto {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 /* Print Styles */
