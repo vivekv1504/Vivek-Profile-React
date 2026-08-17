@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: portfolio-production
+  group: github-pages
   cancel-in-progress: true
 
 jobs:
@@ -33,25 +33,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Relative asset paths work on both the GitHub Pages repository path
-      # and the root Netlify domain.
+      # GitHub Pages serves this project from /Vivek-Profile-React/.
       - name: Build production site
-        run: npm run build -- --base=./
+        run: npm run build -- --base=/${{ github.event.repository.name }}/
 
       - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
 
       - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: ./dist
-
-      - name: Upload Netlify artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: portfolio-dist
-          path: ./dist
-          if-no-files-found: error
 
   deploy-github-pages:
     name: Deploy to GitHub Pages
@@ -64,36 +56,4 @@ jobs:
     steps:
       - name: Deploy GitHub Pages artifact
         id: deployment
-        uses: actions/deploy-pages@v4
-
-  deploy-netlify:
-    name: Deploy to Netlify
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: netlify-production
-      url: https://vinthavivekananda-portfolio.netlify.app/
-
-    steps:
-      - name: Download production build
-        uses: actions/download-artifact@v4
-        with:
-          name: portfolio-dist
-          path: ./dist
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-
-      - name: Deploy production site to Netlify
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: >-
-          npx --yes netlify-cli@27.0.1 deploy
-          --dir=dist
-          --prod
-          --site="$NETLIFY_SITE_ID"
-          --auth="$NETLIFY_AUTH_TOKEN"
-          --message="GitHub Actions deploy $GITHUB_SHA"
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
