@@ -254,21 +254,171 @@ body.dark-mode {
 
 .imgbox {
   flex-shrink: 0;
+  position: relative;
 }
 
-.imgbox img {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
+/* Flip card: photo on the front, intro video on the back */
+.hero-flip {
+  width: 350px;
+  height: 350px;
+  perspective: 1200px;
+}
+
+.hero-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.hero-flip.flipped .hero-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.hero-flip-front,
+.hero-flip-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
+  overflow: hidden;
   border: 5px solid #00bcd4;
   box-shadow: 0 0 30px rgba(0, 188, 212, 0.5);
-  transition: all 0.3s ease;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
-.imgbox img:hover {
+.hero-flip-back {
+  transform: rotateY(180deg);
+  background: #000;
+}
+
+.hero-flip-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.hero-flip:not(.flipped) .hero-flip-front img:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 50px rgba(0, 188, 212, 0.7);
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #000;
+  pointer-events: none;
+}
+
+/* Hide all native media controls / overlays across browsers */
+.hero-video::-webkit-media-controls,
+.hero-video::-webkit-media-controls-enclosure,
+.hero-video::-webkit-media-controls-panel,
+.hero-video::-webkit-media-controls-play-button,
+.hero-video::-webkit-media-controls-start-playback-button,
+.hero-video::-webkit-media-controls-overlay-play-button,
+.hero-video::-webkit-media-controls-timeline,
+.hero-video::-webkit-media-controls-current-time-display,
+.hero-video::-webkit-media-controls-time-remaining-display,
+.hero-video::-webkit-media-controls-mute-button,
+.hero-video::-webkit-media-controls-volume-slider,
+.hero-video::-webkit-media-controls-fullscreen-button {
+  display: none !important;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+}
+
+.hero-flip-back-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 3;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.hero-flip-back-btn:hover {
+  background: #00bcd4;
+  transform: rotate(90deg);
+}
+
+/* Play button overlay on the photo */
+.hero-play-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 3;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: #00bcd4;
+  color: #fff;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding-left: 4px;
+  box-shadow: 0 5px 18px rgba(0, 188, 212, 0.6);
+  transition: transform 0.3s ease, background 0.3s ease;
+  animation: playPulse 2s infinite;
+}
+
+.hero-play-btn:hover {
+  transform: scale(1.12);
+  background: #0097a7;
+}
+
+@keyframes playPulse {
+  0% {
+    box-shadow: 0 5px 18px rgba(0, 188, 212, 0.6), 0 0 0 0 rgba(0, 188, 212, 0.5);
+  }
+  70% {
+    box-shadow: 0 5px 18px rgba(0, 188, 212, 0.6), 0 0 0 14px rgba(0, 188, 212, 0);
+  }
+  100% {
+    box-shadow: 0 5px 18px rgba(0, 188, 212, 0.6), 0 0 0 0 rgba(0, 188, 212, 0);
+  }
+}
+
+.hero-play-hint {
+  position: absolute;
+  bottom: 22px;
+  right: 74px;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.imgbox:hover .hero-play-hint {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Section Headings */
@@ -750,7 +900,7 @@ body.dark-mode {
 
 .light-mode .cert-card {
   background: linear-gradient(145deg, #ffffff, #f5f5f5);
-  box-shadow: 
+  box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.08),
     0 1px 8px rgba(0, 0, 0, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
@@ -758,7 +908,7 @@ body.dark-mode {
 
 .dark-mode .cert-card {
   background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-  box-shadow: 
+  box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.5),
     0 1px 8px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -902,7 +1052,7 @@ body.dark-mode {
   font-weight: 700;
   font-size: 0.95rem;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 
+  box-shadow:
     0 8px 20px rgba(0, 188, 212, 0.3),
     0 2px 8px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -934,7 +1084,7 @@ body.dark-mode {
 
 .cert-btn:hover {
   transform: translateY(-4px) scale(1.05);
-  box-shadow: 
+  box-shadow:
     0 15px 35px rgba(0, 188, 212, 0.5),
     0 5px 15px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -1188,7 +1338,7 @@ footer {
   .home {
     padding: 4rem 5%;
   }
-  
+
   .education,
   .projects,
   .skills,
@@ -1254,9 +1404,9 @@ footer {
     line-height: 1.7;
   }
 
-  .imgbox img {
-    width: 220px;
-    height: 220px;
+  .hero-flip {
+    width: 300px;
+    height: 300px;
   }
 
   .btn-box {
@@ -1390,9 +1540,9 @@ footer {
     max-width: 260px;
   }
 
-  .imgbox img {
-    width: 190px;
-    height: 190px;
+  .hero-flip {
+    width: 250px;
+    height: 250px;
   }
 
   .heading {
